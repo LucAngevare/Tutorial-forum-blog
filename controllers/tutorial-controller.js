@@ -9,25 +9,25 @@ const createTutorial = (req, res) => {
     if (!new_tutorial) res.status(418).json({ success: false, error: err });
 
     new_tutorial.save().then(() => {
-            return res.status(201).json({
-                success: true,
-                id: new_tutorial._id,
-                message: "Tutorial saved to the database mainframe. Hacked into the logistical algorithms and sent the article to the satellites."
-            })
-        }).catch((err) => {
-            return res.status(400).json({
-                error: err,
-                message: "Something went wrong. Unexpected? Contact the website manager!"
-            });
-            console.log(err)
+        return res.status(201).json({
+            success: true,
+            id: new_tutorial._id,
+            message: "Tutorial saved to the database mainframe. Hacked into the logistical algorithms and sent the article to the satellites."
         })
+    }).catch((err) => {
+        return res.status(400).json({
+            error: err,
+            message: "Something went wrong. Unexpected? Contact the website manager!"
+        });
+        console.log(err)
+    })
 }
 
-const updateTutorial = async (req, res) => {
+const updateTutorial = (req, res) => {
     const body = req.body;
     if (!body) return res.status(400).json({ success: false, error: "Provide a body." });
 
-    await Tutorial.findOne({ _id: req.params["id"] }, (err, selection) => {
+    Tutorial.findOne({ _id: req.params["id"] }, function (err, selection) {
         if (err) return res.status(400).json({ success: false, error: err });
 
         selection.title = body.title;
@@ -45,9 +45,8 @@ const updateTutorial = async (req, res) => {
     })
 }
 
-const deleteTutorial = async (req, res) => {
-    console.log("was this executed or not please help")
-    await Tutorial.findOneAndDelete({ _id: new mongoose.Types.ObjectId(req.params["id"].toString()) }, (err, selection) => {
+const deleteTutorial = (req, res) => {
+    Tutorial.findOneAndDelete({ _id: new mongoose.Types.ObjectId(req.params["id"].toString()) }, function (err, selection) {
         if (err) return res.status(400).json({ success: false, error: err });
         if (!selection) return res.status(404).json({ success: false, error: "Post not recognized" });
 
@@ -55,8 +54,8 @@ const deleteTutorial = async (req, res) => {
     })
 }
 
-const getPostByID = async (req, res) => {
-    await Tutorial.findOne({ _id: req.params["id"] }, (err, tutorial) => {
+const getPostByID = (req, res) => {
+    Tutorial.findOne({ _id: req.params["id"] }, function (err, tutorial) {
         if (err) return res.status(400).json({ success: false, error: err });
         if (!tutorial) return res.status(404).json({ success: false, error: "Post not found" });
 
@@ -64,14 +63,12 @@ const getPostByID = async (req, res) => {
     })
 }
 
-const getPosts = async (req, res) => {
-    await Tutorial.find({}, (err, tutorials) => {
+const getPosts = (req, res) => {
+    Tutorial.find({}, function(err, tutorials) {
         if (err) return res.status(400).json({ success: false, error: err })
-        if (!tutorials.length) return res.status(404).json({ success: false, error: "Post(s) not found" })
+        if (!tutorials.length) return res.status(404).json({ success: false, error: "No posts found!" })
 
         return res.status(200).json({ success: true, data: tutorials })
-    }).catch((err) => {
-        console.error(err)
     })
 }
 
