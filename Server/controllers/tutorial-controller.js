@@ -1,9 +1,20 @@
 const Tutorial = require("../models/schema-former");
 const mongoose = require("mongoose");
+const showdown = require("showdown");
+const converter = new showdown.Converter();
+
+converter.setOption("parseImgDimensions", true);
+converter.setOption("tables", true);
+converter.setOption("ghCodeBlocks", true);
+converter.setOption("tasklists", true);
+converter.setOption("simpleLineBreaks", true);
+converter.setOption("backslashEscapesHTMLTags", true);
+converter.setOption("emoji", true);
 
 const createTutorial = (req, res) => {
     const body = req.body;
     if (!body) return res.status(400).json({ success: false, error: "Provide a body." });
+    body.content = converter.makeHtml(req.body.content)
 
     const new_tutorial = new Tutorial(body);
     if (!new_tutorial) res.status(418).json({ success: false, error: err });
