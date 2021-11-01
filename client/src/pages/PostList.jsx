@@ -20,20 +20,35 @@ class PostList extends Component {
         const { posts, isLoading } = this.state;
 //Sorting is the wrong way, sorts from oldest to newest currently.
         return(
-            <div className="posts-wrapper">
-                {posts.map((post, i) => (
-                    <a className="post-link" href={"/post/id/" + post._id}>
-                        <div className="post enabled">
-                            <h1 className="post-title" key={i}>{post.title}</h1>
-                            <hr className="post-divider"/>
-                            <p className="post-summary" key={i}>{post.summary}</p>
-                            <p className="post-username" key={i}>{post.user.name}</p>
-                            {post.tags.map((post, i) => (<span key={i} className="post-tags">{post}</span>))}
-                            <p className="post-date" key={i}>{new Date(post.date).toLocaleString()}</p>
+            <div className="main-content">
+                <div className="dash">
+                    <p className="post-count">Er zijn {posts.length} totale posts;</p>
+                    <a className="add-contextual" href="/post">Post iets</a>
+                </div>
+                <div className="post-wrapper">
+                    {posts.map((post, i) => (
+                        <div className="post">
+                            <a className="post-link" href={"/post/id/" + post._id}>
+                                <span className="author">
+                                    <img className="user-icon" alt="icon"/>
+                                    <p className="user" key={i}>{post.user.name}</p>
+                                </span>
+                                <span className="content">
+                                    <h1 className="header" key={i}>{post.title}</h1>
+                                    <h2 className="subtitle" key={i}>{post.summary}</h2>
+                                    <p><span className="date" key={i}>{post.updatedAt}  •  <a className="share-button" key={i} onClick={"copyToClipboard('/post/'" + post._id + "')"} href="javascript:void(0)">Share</a></span></p>
+                                </span>
+                                <span className="post-tags">
+                                    {post.tags.map((post, i) => (<a key={i} className="tag">{post}</a>))}
+                                </span>
+                            </a>
                         </div>
-                    </a>
-                    )
-                )}
+                    ))}
+                </div>
+                <div className="tags">
+                    <p className="post-count tags-list-p">Tags die je volgt:</p>
+                    <div className="tag-display"></div>
+                </div>
             </div>
         )
     }
