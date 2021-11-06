@@ -99,6 +99,29 @@ html {
   clear: both;
 }
 
+.post-title {
+  font-family: 'Product Sans';
+  font-weight: bold;
+  padding-top: 0px;
+  padding-left: 10px;
+}
+
+.post-line {
+  width: 10px;
+  margin-left: 15px;
+  float: left;
+  display: block;
+  position: relative;
+  margin-top: -5px;
+}
+
+.post-content {
+  margin-left: -15px;
+  margin-top: -5px;
+  display: inline-block;
+  font-family: 'Product Sans';
+}
+
 .title {
   display: block;
   position: absolute;

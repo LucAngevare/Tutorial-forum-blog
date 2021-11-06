@@ -17,7 +17,7 @@ class PostList extends Component {
         })
     }
     render() {
-        const { posts, isLoading } = this.state;
+        const { posts } = this.state;
 //Sorting is the wrong way, sorts from oldest to newest currently.
         return(
             <div className="main-content">
@@ -28,7 +28,7 @@ class PostList extends Component {
                 <div className="post-wrapper">
                     {posts.map((post, i) => (
                         <div className="post">
-                            <a className="post-link" href={"/post/id/" + post._id}>
+                            <a className="post-link" href={"/post/" + post._id}>
                                 <span className="author">
                                     <img className="user-icon" alt="icon"/>
                                     <p className="user" key={i}>{post.user.name}</p>
