@@ -13,7 +13,7 @@ class PostList extends Component {
     componentDidMount = async() => {
         this.setState({isLoading: true});
         await api.getAllPosts().then((posts) => {
-            this.setState({posts: posts.data.data, isLoading: false});
+            this.setState({posts: posts.data.data.reverse(), isLoading: false}); //Array.prototype.reverse() doe ik hier met een reden, zonder dit laat hij als eerste de oudste zien en als laatste de nieuwste, dat hoort niet echt bij een blog voor zover ik weet.
         })
     }
     render() {
@@ -31,12 +31,12 @@ class PostList extends Component {
                             <a className="post-link" href={"/post/" + post._id}>
                                 <span className="author">
                                     <img className="user-icon" alt="icon"/>
-                                    <p className="user" key={i}>{post.user.name}</p>
+                                    <a href={"/profile/" + post.user.ID} className="user" key={i}>{post.user.name}</a>
                                 </span>
                                 <span className="content">
                                     <h1 className="header" key={i}>{post.title}</h1>
                                     <h2 className="subtitle" key={i}>{post.summary}</h2>
-                                    <p><span className="date" key={i}>{post.updatedAt}  •  <a className="share-button" key={i} onClick={"copyToClipboard('/post/'" + post._id + "')"} href="javascript:void(0)">Share</a></span></p>
+                                    <p><span className="date" key={i}>{new Date(String(post.updatedAt)).toLocaleString()}  •  <a className="share-button" key={i} onClick={() => {navigator.clipboard.writeText(`${window.location.href}post/${post._id}`)}} href="javascript:void(0)">Share</a></span></p>
                                 </span>
                                 <span className="post-tags">
                                     {post.tags.map((post, i) => (<a key={i} className="tag">{post}</a>))}

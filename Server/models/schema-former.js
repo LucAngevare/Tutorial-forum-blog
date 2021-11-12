@@ -10,4 +10,10 @@ const Tutorials = new Schema({
     tags: { type: Schema.Types.Mixed, required: true } //Object datatype for use of arrays.
 }, {timestamps: true});
 
-module.exports = mongoose.model('tutorials', Tutorials);
+const Users = new Schema({
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    email: { type: String, required: true }
+})
+
+module.exports = { Tutorial: mongoose.model('tutorials', Tutorials), Users: mongoose.model('users', Users) };

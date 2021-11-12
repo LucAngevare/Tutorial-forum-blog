@@ -9,6 +9,7 @@ const app = express();
 const apiPort = process.env.PORT ?? 8080;
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/static", express.static("userIcons"))
 app.use(cors());
 app.use(bodyParser.json());
 

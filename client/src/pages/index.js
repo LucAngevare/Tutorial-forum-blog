@@ -1,7 +1,9 @@
 import PostList from './PostList'
-import PostInsert from './PostInsert'
 import PostUpdate from './PostUpdate'
 import PostView from './PostView'
-import home from './home'
+import Post from './Post'
+import Profile from './Profile'
+import Signup from './Signup'
+import ViewProfile from './ViewProfile'
 
-export { PostList, PostInsert, PostUpdate, PostView, home }
+export { PostList, PostUpdate, PostView, Post, Profile, Signup, ViewProfile }

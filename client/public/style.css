@@ -116,10 +116,43 @@ html {
 }
 
 .post-content {
-  margin-left: -15px;
+  margin-left: 15px;
   margin-top: -5px;
   display: inline-block;
   font-family: 'Product Sans';
+}
+
+label {
+  font-family: "Product Sans";
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.title-label {
+  margin-top: -5px;
+}
+
+.explanation {
+  display: inline-block;
+  margin: 5px 0px;
+  color: #A4A4A4;
+  font-family: "Product Sans";
+  font-size: .9em;
+}
+
+.post-form {
+  background-color: #FCFCFC;
+  border: 0px solid;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.5);
+  -webkit-box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.5); 
+  width: 90%;
+  margin-left: 4%;
+  min-height: 80%;
+  display: block;
 }
 
 .title {
@@ -128,6 +161,10 @@ html {
   margin-top: -82.5px;
   margin-left: 75px;
   color: black;
+}
+
+.title:hover {
+  cursor: pointer;
 }
 
 .title-1 {
@@ -205,20 +242,58 @@ html {
   background-color: rgb(90, 54, 0);
 }
 
+.profile-icon {
+  width: 50px;
+  border: 1px solid;
+  border-radius: 100%;
+  position: absolute;
+  right: 1.25%;
+  height: 50px;
+  top: 2%;
+}
+
+.profile-details {
+  display: block;
+  margin: 0px auto;
+  width: 25%;
+  padding: 10px 5px;
+  line-height: 14px;
+  font-family: "Product Sans";
+  font-size: .95em;
+}
+
+.username {
+  margin-top: 75px;
+}
+
+.password, .email {
+  margin-top: -19px;
+}
+
+.login, .signup {
+  border: none;
+}
+
+.signup {
+  padding: 10px 0;
+  left: 3px;
+  position: relative;
+}
+
 .search {
   font-family: 'Product Sans';
   font-style: normal;
   padding-left: 25px;
   position: absolute;
-  margin: 1.5px auto auto auto;
+  margin: 8px auto auto auto;
   right: 0px;
   left: 0px;
-  height: 55px;
-  width: 35%;
+  height: 40px;
+  width: 32%;
   background-color: #E6E6E6;
   border: 1px solid;
-  font-size: 32px;
-  border-radius: 3vw;
+  font-size: 1.5em;
+  border-radius: 1.3vw;
 }
 
 .tag-display {
@@ -252,18 +327,67 @@ html {
   display: block;
 }
 
-.post {
+.post, .post-2 {
   border: 1px solid;
   border-color: #4C4C4C;
   background-color: white;
   padding: 10px;
 }
 
+#title {
+  width: 90%;
+  left: 1px;
+  font-family: "Product Sans";
+  font-style: normal;
+  font-size: 1em;
+}
+
+#postForm {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.submit {
+  margin: 0 auto;
+  width: 8.9%;
+  height: 1.8em;
+  border: none;
+  background-color: #CECECE;
+  font-family: 'Product Sans';
+}
+
+.submit:hover {
+  background-color: #888888;
+}
+
+.submit:active {
+  baclground-color: #696969;
+}
+
+.markdown-input {
+  width: 98.5%;
+  bottom: 1px;
+  height: 200px;
+  font-family: "Product Sans";
+  font-style: normal;
+  font-size: 1em;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+#tags {
+  font-family: "Product Sans";
+  font-style: normal;
+  font-size: 1em;
+  width: 98.5%;
+}
+
 .post:first-of-type {
   margin-top: 125px;
 }
 
-.post > * {
+.post > *, .post-2 > * {
   text-decoration: none;
   color: black;
 }
@@ -306,6 +430,7 @@ html {
   padding: 2px 5px 2px 5px;
   display: inline-block;
   margin-top: 3px;
+  margin-left: 2px;
 }
 
 .tag:hover {
