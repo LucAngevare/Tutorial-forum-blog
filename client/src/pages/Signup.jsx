@@ -42,7 +42,8 @@ class Profile extends Component {
             password: md5Hex(this.password.current.value),
             email: this.email.current.value
         }).then((res) => {
-            localStorage.setItem("User-ID", res["ID"]);
+            localStorage.setItem("User-ID", res.data["ID"]);
+	    window.location = "/";
         })
     }
 
@@ -79,7 +80,7 @@ class Profile extends Component {
 
     usernameChange = (event) => {
         const copyState = this.state.usernames;
-        if (copyState.indexOf(this.username.current.value) === -1) {
+        if (copyState.includes(this.username.current.value)) {
             if (this.state.errorMessages.includes("De gebruikersnaam die u heeft ingevoerd bestaat al")) return;
             const copyState = this.state["errorMessages"];
             copyState.push("De gebruikersnaam die u heeft ingevoerd bestaat al");

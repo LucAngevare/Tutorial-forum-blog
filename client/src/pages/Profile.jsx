@@ -17,24 +17,25 @@ class Profile extends Component {
         const password = md5Hex(this.password.current.value); //Hashing to md5 in declaration so looking at RAM data can't reveal any passwords
 
         const reg = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/g)
-        if (reg.test(username)) { //reg.test(username) == true means an email-address has been entered instead of a username
-            api.checkLogin({
-                email: username,
-                password: password
-            }).then((res) => {
-                console.log(res)
-                if (res.data["success"]) return localStorage.setItem("User-ID", res.data["ID"])
-            })
-        } else {
-            api.checkLogin({
-                username: username,
-                password: password
-            }).then((res) => {
-                console.log(res)
-                if (res.data["success"]) return localStorage.setItem("User-ID", res.data["ID"])
-            }) //Messy code but I was so stupid to think I could fit in a whole user IDing system with less than a week left to program
-        }
-        window.location = "/profile/" + localStorage.getItem("User-ID")
+        new Promise((resolve, reject) => {
+	    if (reg.test(username)) { //reg.test(username) == true means an email-address has been entered instead of a username
+                api.checkLogin({
+                    email: username,
+                    password: password
+                }).then((res) => {
+                    console.log(res)
+                    if (res.data["success"]) return localStorage.setItem("User-ID", res.data["ID"])
+                })
+            } else {
+                api.checkLogin({
+                    username: username,
+                    password: password
+                }).then((res) => {
+                    console.log(res)
+                    if (res.data["success"]) return localStorage.setItem("User-ID", res.data["ID"])
+                }) //Messy code but I was so stupid to think I could fit in a whole user IDing system with less than a week left to program
+            }
+	}).then(() => window.location = "/profile/" + localStorage.getItem("User-ID"))
     }
 
     signUp = (event) => {

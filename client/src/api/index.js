@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const api = axios.create({
-    baseURL: "http://localhost:3355/api"
+    baseURL: "http://blog.lucangevare.nl:3355/api"
 });
 
 export const insertPost = (payload) => api.post("/post", payload);

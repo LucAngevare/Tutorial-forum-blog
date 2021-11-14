@@ -13,12 +13,11 @@ class PostList extends Component {
     componentDidMount = async() => {
         this.setState({isLoading: true});
         await api.getAllPosts().then((posts) => {
-            this.setState({posts: posts.data.data.reverse(), isLoading: false}); //Array.prototype.reverse() doe ik hier met een reden, zonder dit laat hij als eerste de oudste zien en als laatste de nieuwste, dat hoort niet echt bij een blog voor zover ik weet.
-        })
+            this.setState({posts: posts.data.data, isLoading: false}); //Array.prototype.reverse() doe ik hier met een reden, zonder dit laat hij als eerste de oudste zien en als laatste de nieuwste, dat hoort niet echt bij een blog voor zover ik weet.
+        }) //Ik snap er geen ene kut meer van, op Windows geeft MongoDB de oudste data als eerste, op Linux andersom. Volgende periode iets om uit te zoeken, nu iets om te bodgen.
     }
     render() {
         const { posts } = this.state;
-//Sorting is the wrong way, sorts from oldest to newest currently.
         return(
             <div className="main-content">
                 <div className="dash">

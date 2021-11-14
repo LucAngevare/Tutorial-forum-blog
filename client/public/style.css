@@ -67,6 +67,12 @@ html {
   top: 0px;
 }
 
+span.author {
+  padding-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
 .post-wrapper {
   float: left;
   width: 50%;

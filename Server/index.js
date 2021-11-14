@@ -6,11 +6,11 @@ const postRouter = require("./routers/post-router")
 const db = require("./db");
 
 const app = express();
-const apiPort = process.env.PORT ?? 8080;
+const apiPort = process.env.PORT ?? 3355;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/static", express.static("userIcons"))
-app.use(cors());
+app.use(cors()); //If there's something I hate more than anything in life, it's CORS errors, so I'll just fix it now before it even comes up.
 app.use(bodyParser.json());
 
 db.on("error", console.error.bind(console, "MongoDB connection error: "));
